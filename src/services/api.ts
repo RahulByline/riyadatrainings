@@ -455,7 +455,9 @@ export const apiService = {
         companies = [response.data];
       }
 
-      return companies.map((company: any) => ({
+      return companies
+        .filter((company: any) => company && company.id !== undefined && company.id !== null)
+        .map((company: any) => ({
           id: company.id.toString(),
           name: company.name,
           shortname: company.shortname,
